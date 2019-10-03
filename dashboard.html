@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    My Smart Garden
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link href="css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <style type="text/css"
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white">
+      <div class="logo">
+        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          My Smart Garden
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active  ">
+            <a class="nav-link" href="./dashboard.html">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./map.html">
+              <i class="material-icons">location_ons</i>
+              <p>Maps</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./notifications.html">
+              <i class="material-icons">notifications</i>
+              <p>Notifications</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#pablo">Dashboard</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-4 col-md-8 col-sm-8">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">brightness_6</i>
+                  </div>
+                  <p class="card-category">Cường độ sáng</p>
+                  <h3 class="card-title">49
+                  </h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">brightness_5</i>
+                    Light OFF
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8">
+              <div class="card card-stats">
+                <div class="card-header card-header-primary card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">local_drink</i>
+                  </div>
+                  <p class="card-category">Độ ẩm đất</p>
+                  <h3 class="card-title">34</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">whatshot</i> Water Pumps OFF
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">scatter_plot</i>
+                  </div>
+                  <p class="card-category">Chất lượng nước</p>
+                  <h3 class="card-title">75</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">local_offer</i> Good PH
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card card-chart">
+                <div class="card-header card-header-success">
+                  <div class="ct-chart" id="dailySalesChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Độ ẩm không khí</h4>
+                  <p class="card-category">
+                    <span class="text-success"><i class="fa fa-tint"></i> 99% </span> 03-10-2019</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card card-chart">
+                <div class="card-header card-header-warning">
+                  <div class="ct-chart" id="completedTasksChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Nhiệt độ</h4>
+                  <span class="text-danger"><i class="fa fa-thermometer-full"></i> 99% </span> 03-10-2019</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <span class="nav-tabs-title">Notifications</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="profile">
+                      <table class="table table-hover">
+                        <tbody>
+                          <tr>
+                            <td>
+                              Sign contract for "What are conference organizers afraid of?
+                             </td>
+                          </tr>
+                          <tr>
+                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                          </tr>
+                          <tr>
+                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+<!--  <script src="js/jquery-3.4.1.min.js"></script>-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--  <script src="js/popper.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js"></script>
+<!--  <script src="js/perfect-scrollbar.jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.13/js/perfect-scrollbar.jquery.min.js"></script>
+<!--  <script src="js/chartist.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>
+  <script src="js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+    });
+  </script>
+</body>
+
+</html>
