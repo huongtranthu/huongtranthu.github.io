@@ -2,225 +2,299 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>
     My Smart Garden
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport'/>
+  <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <link href="css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <link href="css/material-dashboard.css?v=2.1.1" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.3.1/justgage.min.js"></script>
 </head>
 
 <body class="">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white">
-      <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          My Smart Garden
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link" href="./dashboard.html">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#notification">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+<div class="wrapper ">
+  <div class="sidebar" data-color="purple" data-background-color="white">
+    <div class="logo">
+      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        My Smart Garden
+      </a>
     </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li class="nav-item active  ">
+          <a class="nav-link" href="#">
+            <i class="material-icons">dashboard</i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="#notification">
+            <i class="material-icons">notifications</i>
+            <p>Notifications</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+      <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <a class="navbar-brand" href="#pablo">Vườn rau thông minh</a>
         </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-4 col-md-8 col-sm-8">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">brightness_6</i>
-                  </div>
-                  <p class="card-category">Cường độ sáng</p>
-                  <h3 class="card-title">49
-                  </h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">brightness_6</i>
                 </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">brightness_5</i>
-                    Light OFF
-                  </div>
+                <p class="card-category">Cường độ sáng</p>
+                <h3 class="card-title">49
+                </h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">brightness_5</i>
+                  Đèn OFF
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-8 col-sm-8">
-              <div class="card card-stats">
-                <div class="card-header card-header-primary card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">local_drink</i>
-                  </div>
-                  <p class="card-category">Độ ẩm đất</p>
-                  <h3 class="card-title">34</h3>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">waves</i>
                 </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">whatshot</i> Water Pumps OFF
-                  </div>
+                <p class="card-category">Tốc độ gió</p>
+                <h3 class="card-title">75</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">local_offer</i> Độ an toàn GOOD
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-8 col-sm-8">
-              <div class="card card-stats">
-                <div class="card-header card-header-info card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">scatter_plot</i>
-                  </div>
-                  <p class="card-category">Chất lượng nước</p>
-                  <h3 class="card-title">75</h3>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-primary card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">local_drink</i>
                 </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">local_offer</i> Good PH
+                <p class="card-category">Độ ẩm đất</p>
+                <h3 class="card-title">34</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">whatshot</i> Bơm nước OFF
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">scatter_plot</i>
+                </div>
+                <p class="card-category">Chất lượng nước</p>
+                <h3 class="card-title">75</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">local_offer</i> Độ PH GOOD
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card card-chart">
+              <div class="card-header card-header-success">
+                <div class="ct-chart" id="dailySalesChart"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Độ ẩm không khí</h4>
+                <p class="card-category">
+                  <span class="text-success"><i class="fa fa-tint"></i> 99% </span> 03-10-2019</p>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">access_time</i> updated 4 minutes ago
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-chart">
+              <div class="card-header card-header-warning">
+                <div class="ct-chart" id="websiteViewsChart"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Nhiệt độ</h4>
+                <span class="text-danger"><i class="fa fa-thermometer-full"></i> 99% </span> 03-10-2019</p>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">access_time</i> updated 4 minutes ago
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card" id="notification">
+            <div class="card-header card-header-primary">
+              <h3 class="card-title">Bảng điều khiển</h3>
+              <p class="card-category">Vườn rau thông minh IOT.
+                Bơm phun sương, bơm nhỏ giọt. Điều khiển đèn, kéo rèm.
+              </p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6 col-md-12">
+                  <div class="card">
+                    <div class="card-header card-header-tabs card-header-success">
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <span class="nav-tabs-title">Bơm:</span>
+                          <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="nav-item">
+                              <a class="nav-link" href="#" data-toggle="tab">
+                                <i class="material-icons">invert_colors</i> Nhỏ giọt
+                                <div class="ripple-container"></div>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#" data-toggle="tab">
+                                <i class="material-icons">flare</i> Phun sương
+                                <div class="ripple-container"></div>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="tab-content">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button class="btn btn-twitter btn-block">
+                              <i class="material-icons">invert_colors</i> Nhỏ giọt
+                            </button>
+                          </div>
+                          <div class="col-md-6">
+                            <button class="btn btn-block">
+                              <i class="material-icons">flare</i> Phun sương
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                  <div class="card">
+                    <div class="card-header card-header-tabs card-header-danger">
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="nav-item">
+                              <a class="nav-link" href="#" data-toggle="tab">
+                                <i class="material-icons">wb_iridescent</i>Đèn
+                                <div class="ripple-container"></div>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#" data-toggle="tab">
+                                <i class="material-icons">beach_access</i>Kéo rèm
+                                <div class="ripple-container"></div>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="tab-content">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button class="btn btn-warning btn-block">
+                              <i class="material-icons">wb_iridescent</i> ON/OFF
+                            </button>
+                          </div>
+                          <div class="col-md-6">
+                            <button class="btn btn-primary btn-block">
+                              <i class="material-icons">beach_access</i> ON/OFF
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card card-chart">
-                <div class="card-header card-header-success">
-                  <div class="ct-chart" id="dailySalesChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Độ ẩm không khí</h4>
-                  <p class="card-category">
-                    <span class="text-success"><i class="fa fa-tint"></i> 99% </span> 03-10-2019</p>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 col-md-16">
+            <div class="card">
+              <div class="card-header card-header-rose">
+                <h4 class="card-title">Vị trí vườn rau</h4>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card card-chart">
-                <div class="card-header card-header-warning">
-                  <div class="ct-chart" id="completedTasksChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Nhiệt độ</h4>
-                  <span class="text-danger"><i class="fa fa-thermometer-full"></i> 99% </span> 03-10-2019</p>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
+              <div class="card-body">
+                <iframe width="100%"
+                        height="300"
+                        frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBqCxZyFfJwJEsxA9ncNMmN9AdhUH7kcWQ&q=Thư+viện+Tạ+Quang+Bửu">
+                </iframe>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="card" id="notification">
-              <div class="card-header card-header-primary">
-                <h3 class="card-title">Notifications</h3>
-                <p class="card-category">Handcrafted by our friend
-                  <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the
-                  <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>
-                </p>
+          <div class="col-lg-4 col-md-8">
+            <div class="card">
+              <div class="card-header card-header-info">
+                <h3 class="card-title">Thông báo</h3>
               </div>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-6">
-                    <h4 class="card-title">Notifications Style</h4>
-                    <div class="alert alert-info">
-                      <span>This is a plain notification</span>
-                    </div>
-                    <div class="alert alert-info">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="material-icons">close</i>
-                      </button>
-                      <span>This is a notification with close button.</span>
-                    </div>
-                    <div class="alert alert-info alert-with-icon" data-notify="container">
-                      <i class="material-icons" data-notify="icon">add_alert</i>
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="material-icons">close</i>
-                      </button>
-                      <span data-notify="message">This is a notification with close button and icon.</span>
-                    </div>
-                    <div class="alert alert-info alert-with-icon" data-notify="container">
-                      <i class="material-icons" data-notify="icon">add_alert</i>
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="material-icons">close</i>
-                      </button>
-                      <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <h4 class="card-title">Notification states</h4>
-                    <div class="alert alert-info">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="material-icons">close</i>
-                      </button>
-                      <span>
-                      <b> Info - </b> This is a regular notification made with ".alert-info"</span>
+                  <div class="col-md-12">
+                    <div class="alert alert-success">
+                        <span>
+                      <b> Bơm - </b>Khởi động hệ thống bơm nhỏ giọt lúc 13:59 PM 8/9/2019</span>
                     </div>
                     <div class="alert alert-success">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="material-icons">close</i>
-                      </button>
-                      <span>
-                      <b> Success - </b> This is a regular notification made with ".alert-success"</span>
+                        <span>
+                      <b> Bơm - </b>Khởi động hệ thống bơm nhỏ giọt lúc 13:59 PM 8/9/2019</span>
                     </div>
-                    <div class="alert alert-warning">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="material-icons">close</i>
-                      </button>
-                      <span>
-                      <b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
-                    </div>
-                    <div class="alert alert-danger">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="material-icons">close</i>
-                      </button>
-                      <span>
-                      <b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
-                    </div>
-                    <div class="alert alert-primary">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="material-icons">close</i>
-                      </button>
-                      <span>
-                      <b> Primary - </b> This is a regular notification made with ".alert-primary"</span>
+                    <div class="alert alert-success">
+                        <span>
+                      <b> Bơm - </b>Khởi động hệ thống bơm nhỏ giọt lúc 13:59 PM 8/9/2019</span>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
               </div>
             </div>
           </div>
@@ -228,22 +302,20 @@
       </div>
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="js/jquery-3.4.1.min.js"></script>
-<!--  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
-  <script src="js/popper.min.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js"></script>-->
-  <script src="js/perfect-scrollbar.jquery.min.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.13/js/perfect-scrollbar.jquery.min.js"></script>-->
-  <script src="js/chartist.min.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>-->
-  <script src="js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-    });
-  </script>
+</div>
+</div>
+<!--   Core JS Files   -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/perfect-scrollbar.jquery.min.js"></script>
+<script src="js/chartist.min.js"></script>
+<script src="js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+<script>
+  $(document).ready(function () {
+    // Javascript method's body can be found in assets/js/demos.js
+    md.initDashboardPageCharts();
+  });
+</script>
 </body>
 
 </html>
