@@ -183,18 +183,29 @@ md = {
     });
   },
 
-  initDocumentationCharts: function() {
-    if ($('#dailySalesChart').length != 0 && $('#websiteViewsChart').length != 0) {
+  initDocumentationCharts: async function() {
+    const response = await fetch('https://api.thingspeak.com/channels/866214/fields/1',
+        {
+          method: 'GET',
+        })
+    let feeds = await response.json()
+    let feedArr = feeds.feeds
+    feedArr = feedArr.reverse().filter(e => e.field1 !== null).slice(0, 12);
+    const minuteArr = feedArr.map(e => new Date(e.created_at).getHours() + ':'
+        + (new Date(e.created_at).getMinutes() < 10 ? ('0' + new Date(e.created_at).getMinutes())
+            : new Date(e.created_at).getMinutes()));
+    if ($('#humidityChart').length != 0 && $('#websiteViewsChart').length != 0) {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
-      dataDailySalesChart = {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      humidityChart = {
+        labels: minuteArr,
         series: [
-          [12, 17, 7, 17, 23, 18, 38]
+          [12, 17, 7, 17, 23, 18, 38, 1, 1, 1, 1, 1],
+          [30, 30, 30, 30, 30, 30, 30, 1, 1, 1, 1 , 1]
         ]
       };
 
-      optionsDailySalesChart = {
+      optionsHumidityChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
@@ -208,9 +219,9 @@ md = {
         },
       }
 
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+      var dailySalesChart = new Chartist.Line('#dailySalesChart', humidityChart, optionsHumidityChart);
 
-      var animationHeaderChart = new Chartist.Line('#websiteViewsChart', dataDailySalesChart, optionsDailySalesChart);
+      var animationHeaderChart = new Chartist.Line('#websiteViewsChart', humidityChart, optionsHumidityChart);
     }
   },
 
@@ -307,19 +318,41 @@ md = {
     }
   },
 
-  initDashboardPageCharts: function() {
+  initDashboardPageCharts: async function() {
+    // ===================== humidity =========================
+    const responseHum = await fetch('https://api.thingspeak.com/channels/866214/fields/2',
+        {
+          method: 'GET',
+        })
+    let feedsHum = await responseHum.json()
+    let feedArrHum = feedsHum.feeds
+    feedArrHum = feedArrHum.reverse().filter(e => e.field2 !== null).slice(0, 12);
+    const minuteArrHum = feedArrHum.map(e => new Date(e.created_at).getHours() + ':'
+        + (new Date(e.created_at).getMinutes() < 10 ? ('0' + new Date(e.created_at).getMinutes())
+            : new Date(e.created_at).getMinutes()));
 
-    if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
-      /* ----------==========     Daily Sales Chart initialization    ==========---------- */
+    const responseTemp = await fetch('https://api.thingspeak.com/channels/866214/fields/1',
+        {
+          method: 'GET',
+        })
+    let feedsTemp = await responseTemp.json()
+    let feedArrTemp = feedsTemp.feeds
+    feedArrTemp = feedArrTemp.reverse().filter(e => e.field1 !== null).slice(0, 12);
+    const minuteArrTemp = feedArrTemp.map(e => new Date(e.created_at).getHours() + ':'
+        + (new Date(e.created_at).getMinutes() < 10 ? ('0' + new Date(e.created_at).getMinutes())
+            : new Date(e.created_at).getMinutes()));
+    if ($('#humidityChart').length != 0 || $('#temperatureChart').length != 0) {
+      /* ----------==========     Humidity initialization    ==========---------- */
 
-      dataDailySalesChart = {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      humidityChart = {
+        labels: minuteArrHum,
         series: [
-          [12, 17, 7, 17, 23, 18, 38]
+          [20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20],
+          [12, 17, 7, 17, 23, 18, 38, 1, 1, 1, 1, 1]
         ]
       };
 
-      optionsDailySalesChart = {
+      optionsHumidityChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
@@ -333,77 +366,37 @@ md = {
         },
       }
 
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+      var humidityChart = new Chartist.Line('#humidityChart', humidityChart, optionsHumidityChart);
 
-      md.startAnimationForLineChart(dailySalesChart);
+      md.startAnimationForLineChart(humidityChart);
 
-
-
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
-      dataCompletedTasksChart = {
-        labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
+      // ========================== temperature chart ======================
+      temperatureChart = {
+        labels: minuteArrTemp,
         series: [
-          [230, 750, 450, 300, 280, 240, 200, 190]
+          [20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20],
+          [12, 17, 7, 17, 23, 18, 38, 1, 1, 1, 1, 1]
         ]
       };
 
-      optionsCompletedTasksChart = {
+      optionsTemperatureChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
         low: 0,
-        high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
         chartPadding: {
           top: 0,
           right: 0,
           bottom: 0,
           left: 0
-        }
+        },
       }
 
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+      var humidityChart = new Chartist.Line('#temperatureChart', temperatureChart, optionsTemperatureChart);
 
-      // start animation for the Completed Tasks Chart - Line Chart
-      md.startAnimationForLineChart(completedTasksChart);
+      md.startAnimationForLineChart(temperatureChart);
 
-
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
-
-      var dataWebsiteViewsChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-        series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-
-        ]
-      };
-      var optionsWebsiteViewsChart = {
-        axisX: {
-          showGrid: false
-        },
-        low: 0,
-        high: 1000,
-        chartPadding: {
-          top: 0,
-          right: 5,
-          bottom: 0,
-          left: 0
-        }
-      };
-      var responsiveOptions = [
-        ['screen and (max-width: 640px)', {
-          seriesBarDistance: 5,
-          axisX: {
-            labelInterpolationFnc: function(value) {
-              return value[0];
-            }
-          }
-        }]
-      ];
-      var websiteViewsChart = Chartist.Bar('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
-
-      //start animation for the Emails Subscription Chart
-      md.startAnimationForBarChart(websiteViewsChart);
     }
   },
 
