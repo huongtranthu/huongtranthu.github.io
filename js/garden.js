@@ -183,6 +183,37 @@ async function getHumidityIntensity() {
     });
 }
 
+let lightStatus;
+
+async function getControlLightStatus() {
+    // get on/off status
+    const response = await fetch('https://api.thingspeak.com/channels/928735/fields/1',
+        {
+            method: 'GET',
+        })
+    let feeds = await response.json()
+    let feedArr = feeds.feeds
+    lightStatus = Number.parseInt(feedArr.reverse().filter(e => e.field1 !== null)[0].field1);
+    console.log(lightStatus)
+    if (lightStatus === 1) $('#controlLight').addClass("btn-warning")
+    else $('#controlLight').removeClass("btn-warning")
+}
+
+let pumpStatus;
+async function getControlPumpStatus() {
+    // get on/off status
+    const response = await fetch('https://api.thingspeak.com/channels/928735/fields/2',
+        {
+            method: 'GET',
+        })
+    let feeds = await response.json()
+    let feedArr = feeds.feeds
+    pumpStatus = Number.parseInt(feedArr.reverse().filter(e => e.field2 !== null)[0].field2);
+    console.log(pumpStatus)
+    if (pumpStatus === 1) $('#controlPump').addClass("btn-twitter")
+    else $('#controlPump').removeClass("btn-twitter")
+}
+
 async function submitTempForm() {
     let upper = $('#upperTemp').val();
     let below = $('#belowTemp').val();
@@ -225,22 +256,6 @@ async function submitHumForm() {
     }
 }
 
-let lightStatus;
-
-async function getControlLightStatus() {
-    // get on/off status
-    const response = await fetch('https://api.thingspeak.com/channels/928735/fields/1',
-        {
-            method: 'GET',
-        })
-    let feeds = await response.json()
-    let feedArr = feeds.feeds
-    lightStatus = Number.parseInt(feedArr.reverse().filter(e => e.field1 !== null)[0].field1);
-    console.log(lightStatus)
-    if (lightStatus === 1) $('#controlLight').addClass("btn-warning")
-    else $('#controlLight').removeClass("btn-warning")
-}
-
 async function controlLight() {
     let status = lightStatus === 1 ? 0 : 1
     lightStatus = status
@@ -257,21 +272,6 @@ async function controlLight() {
     } catch (e) {
         alert("Failed when turn on/off lights")
     }
-}
-
-let pumpStatus;
-async function getControlPumpStatus() {
-    // get on/off status
-    const response = await fetch('https://api.thingspeak.com/channels/928735/fields/2',
-        {
-            method: 'GET',
-        })
-    let feeds = await response.json()
-    let feedArr = feeds.feeds
-    pumpStatus = Number.parseInt(feedArr.reverse().filter(e => e.field2 !== null)[0].field2);
-    console.log(pumpStatus)
-    if (pumpStatus === 1) $('#controlPump').addClass("btn-twitter")
-    else $('#controlPump').removeClass("btn-twitter")
 }
 
 async function controlPump() {
