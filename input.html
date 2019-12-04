@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Temperature and Humidity range</title>
+  <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link href="css/material-dashboard.css?v=2.1.1" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.3.1/justgage.min.js"></script>
+</head>
+<body>
+<div class="wrapper ">
+  <div class="sidebar" data-color="purple" data-background-color="white">
+    <div class="logo">
+      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        My Smart Garden
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+            <i class="material-icons">dashboard</i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="input.html">
+            <i class="material-icons">settings_applications</i>
+            <p>Safe Range Settings</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="https://thingspeak.com/channels/866214">
+            <i class="material-icons">content_paste</i>
+            <p>Table List</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#notification">
+            <i class="material-icons">notifications</i>
+            <p>Notifications</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+      <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <a class="navbar-brand" href="#pablo">Vườn rau thông minh</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="card col-md-5">
+            <div class="card-header card-header-warning">
+              <h3 class="card-title">Temperature Setting</h3>
+            </div>
+            <div class="card-body">
+              <div class="md-form">
+                <label for="upperTemp">Upper level</label>
+                <input type="number" id="upperTemp" class="form-control" required>
+              </div>
+              <div class="md-form">
+                <label for="belowTemp">Below level</label>
+                <input type="number" id="belowTemp" class="form-control" required>
+              </div>
+              <button onclick="submitTempForm()" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">
+                Submit
+              </button>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="card col-md-5">
+            <div class="card-header card-header-info">
+              <h3 class="card-title">Humidity Setting</h3>
+            </div>
+            <div class="card-body">
+              <div class="md-form">
+                <label for="upperHum">Upper level</label>
+                <input type="number" id="upperHum" class="form-control" required>
+              </div>
+              <div class="md-form">
+                <label for="belowHum">Below level</label>
+                <input type="number" id="belowHum" class="form-control" required>
+              </div>
+              <button onclick="submitHumForm()" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/perfect-scrollbar.jquery.min.js"></script>
+<script src="js/garden.js"></script>
+</body>
+</html>

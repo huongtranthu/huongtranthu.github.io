@@ -14,13 +14,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <link href="css/material-dashboard.css?v=2.1.1" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.3.1/justgage.min.js"></script>
-  <!--   Core JS Files   -->
   <script src="js/garden.js"></script>
+  <!--   Core JS Files   -->
   <script type="text/javascript">
-    getLightIntensity()
-    getSoilIntensity()
-    getHumidityIntensity()
-    getTemperaturesIntensity()
+      getLightIntensity()
+      getSoilIntensity()
+      getHumidityIntensity()
+      getTemperaturesIntensity()
+      getControlLightStatus()
+      getControlPumpStatus()
   </script>
 </head>
 
@@ -34,10 +36,16 @@
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item active  ">
-          <a class="nav-link" href="#">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="input.html">
+            <i class="material-icons">settings_applications</i>
+            <p>Safe Range Settings</p>
           </a>
         </li>
         <li class="nav-item ">
@@ -46,8 +54,8 @@
             <p>Table List</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="#notification">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#notification">
             <i class="material-icons">notifications</i>
             <p>Notifications</p>
           </a>
@@ -141,41 +149,12 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card card-chart">
-              <div class="card-header card-header-success">
-                <div class="ct-chart" id="humidityChart"></div>
-              </div>
-              <div class="card-body">
-                <h4 class="card-title">Độ ẩm không khí</h4>
-                <p class="card-category">
-                  <span class="text-success" id="humValue"><i class="fa fa-tint"></i> %</span> 03-10-2019</p>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons">access_time</i> updated 4 minutes ago
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="card card-chart">
-              <div class="card-header card-header-warning">
-                <div class="ct-chart" id="temperatureChart"></div>
-              </div>
-              <div class="card-body">
-                <h4 class="card-title">Nhiệt độ</h4>
-                <span class="text-danger"><i class="fa fa-thermometer-full" id="tempsValue"></i><sup>o</sup>C</span>
-                03-10-2019</p>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons">access_time</i> updated 4 minutes ago
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="tempChart">
+        </div>
+        <div>
+          <hr/>
+        </div>
+        <div id="humChart" >
         </div>
         <div class="row">
           <div class="card" id="notification">
@@ -214,7 +193,7 @@
                       <div class="tab-content">
                         <div class="row">
                           <div class="col-md-6">
-                            <button class="btn btn-twitter btn-block">
+                            <button id="controlPump" onclick="controlPump()" class="btn btn-block">
                               <i class="material-icons">invert_colors</i> Nhỏ giọt
                             </button>
                           </div>
@@ -254,7 +233,7 @@
                       <div class="tab-content">
                         <div class="row">
                           <div class="col-md-6">
-                            <button class="btn btn-warning btn-block">
+                            <button id="controlLight" onclick="controlLight()" class="btn btn-block">
                               <i class="material-icons">wb_iridescent</i> ON/OFF
                             </button>
                           </div>
@@ -318,15 +297,16 @@
   </div>
 </div>
 </div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/perfect-scrollbar.jquery.min.js"></script>
 <script src="js/chartist.min.js"></script>
-<script src="js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        md.initDashboardPageCharts();
+
     });
 </script>
 </body>
