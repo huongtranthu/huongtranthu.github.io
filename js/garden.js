@@ -1,8 +1,5 @@
 let light
 let soil
-let temps
-let hum
-
 // api cuong do sang den - 15 minute per time
 async function getLightIntensity() {
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/3',
@@ -13,7 +10,7 @@ async function getLightIntensity() {
     let feedArr = feeds.feeds.filter(e => e.field3 !== null)
     light = feedArr[feedArr.length - 1].field3
     document.getElementById("lightValue").innerHTML = light
-};
+}
 
 // api do am dat - 15 minute per time
 async function getSoilIntensity() {
@@ -25,7 +22,7 @@ async function getSoilIntensity() {
     let feedArr = feeds.feeds.filter(e => e.field4 !== null)
     soil = feedArr[feedArr.length - 1].field4
     document.getElementById("soilValue").innerHTML = soil
-};
+}
 
 // api temperature
 // return array of temperature - 12 elements
@@ -105,7 +102,7 @@ async function getTemperaturesIntensity() {
             }
         ]
     });
-};
+}
 
 // api get humidity
 // return array of humidity - 12 elements
@@ -184,7 +181,7 @@ async function getHumidityIntensity() {
             }
         ]
     });
-};
+}
 
 async function submitTempForm() {
     let upper = $('#upperTemp').val();
@@ -228,7 +225,7 @@ async function submitHumForm() {
     }
 }
 
-let lightStatus
+let lightStatus;
 
 async function getControlLightStatus() {
     // get on/off status
@@ -262,7 +259,7 @@ async function controlLight() {
     }
 }
 
-let pumpStatus
+let pumpStatus;
 async function getControlPumpStatus() {
     // get on/off status
     const response = await fetch('https://api.thingspeak.com/channels/928735/fields/2',
