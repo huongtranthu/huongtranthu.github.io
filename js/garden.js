@@ -1,15 +1,15 @@
-let light
+let water
 let soil
-// api cuong do sang den - 15 minute per time
-async function getLightIntensity() {
+// api chat luong nuoc - 15 minute per time
+async function getWaterQuality() {
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/3',
         {
             method: 'GET',
         });
     let feeds = await response.json()
     let feedArr = feeds.feeds.filter(e => e.field3 !== null)
-    light = feedArr[feedArr.length - 1].field3
-    document.getElementById("lightValue").innerHTML = light
+    water = feedArr[feedArr.length - 1].field3
+    document.getElementById("waterValue").innerHTML = water
 }
 
 // api do am dat - 15 minute per time
@@ -264,7 +264,7 @@ async function controlLight() {
             {
                 method: 'GET',
             }).then(function (res) {
-            alert("Turn on/off light successfully")
+            alert("Turn on/off water successfully")
             console.log(status)
             if(status === 1) $('#controlLight').addClass("btn-warning")
             else $('#controlLight').removeClass("btn-warning")
@@ -291,4 +291,4 @@ async function controlPump() {
         alert("Failed when turn on/off pump")
     }
 }
-// todo change ui, show light + soil + control board first
+// todo change ui, show water + soil + control board first

@@ -17,7 +17,7 @@
   <script src="js/garden.js"></script>
   <!--   Core JS Files   -->
   <script type="text/javascript">
-      getLightIntensity();
+      getWaterQuality();
       getSoilIntensity();
       getHumidityIntensity();
       getTemperaturesIntensity();
@@ -55,9 +55,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html#notification">
-            <i class="material-icons">notifications</i>
-            <p>Notifications</p>
+          <a class="nav-link" href="https://thingspeak.com/channels/928735">
+            <i class="material-icons">build</i>
+            <p>Pump and Light Control</p>
           </a>
         </li>
       </ul>
@@ -87,39 +87,6 @@
             <div class="card card-stats">
               <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
-                  <i class="material-icons">brightness_6</i>
-                </div>
-                <p class="card-category">Cường độ sáng</p>
-                <h3 class="card-title" id="lightValue"></h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons">brightness_5</i>
-                  Đèn OFF
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-danger card-header-icon">
-                <div class="card-icon">
-                  <i class="material-icons">waves</i>
-                </div>
-                <p class="card-category">Tốc độ gió</p>
-                <h3 class="card-title">75</h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons">local_offer</i> Độ an toàn GOOD
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-primary card-header-icon">
-                <div class="card-icon">
                   <i class="material-icons">local_drink</i>
                 </div>
                 <p class="card-category">Độ ẩm đất</p>
@@ -127,7 +94,7 @@
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">whatshot</i> Bơm nước OFF
+                  <i class="material-icons">whatshot</i>Đơn vị đo: %
                 </div>
               </div>
             </div>
@@ -139,11 +106,34 @@
                   <i class="material-icons">scatter_plot</i>
                 </div>
                 <p class="card-category">Chất lượng nước</p>
-                <h3 class="card-title"></h3>
+                <h3 class="card-title" id="waterValue"></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">local_offer</i> Độ PH GOOD
+                  <i class="material-icons">local_offer</i>Đơn vị đo: PH
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="card" id="notification">
+              <div class="card-header card-header-primary">
+                <h3 class="card-title">Bảng điều khiển</h3>
+              </div>
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button id="controlPump" onclick="controlPump()" class="btn btn-block">
+                        <i class="material-icons">invert_colors</i> Bơm ON/OFF
+                      </button>
+                    </div>
+                    <div class="col-md-6">
+                      <button id="controlLight" onclick="controlLight()" class="btn btn-block">
+                        <i class="material-icons">wb_iridescent</i> Đèn ON/OFF
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -154,107 +144,12 @@
         <div>
           <hr/>
         </div>
-        <div id="humChart" >
+        <div id="humChart">
         </div>
         <div class="row">
-          <div class="card" id="notification">
-            <div class="card-header card-header-primary">
-              <h3 class="card-title">Bảng điều khiển</h3>
-              <p class="card-category">Vườn rau thông minh IOT.
-                Bơm phun sương, bơm nhỏ giọt. Điều khiển đèn, kéo rèm.
-              </p>
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-6 col-md-12">
-                  <div class="card">
-                    <div class="card-header card-header-tabs card-header-success">
-                      <div class="nav-tabs-navigation">
-                        <div class="nav-tabs-wrapper">
-                          <span class="nav-tabs-title">Bơm:</span>
-                          <ul class="nav nav-tabs" data-tabs="tabs">
-                            <li class="nav-item">
-                              <a class="nav-link" href="#" data-toggle="tab">
-                                <i class="material-icons">invert_colors</i> Nhỏ giọt
-                                <div class="ripple-container"></div>
-                              </a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="#" data-toggle="tab">
-                                <i class="material-icons">flare</i> Phun sương
-                                <div class="ripple-container"></div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="tab-content">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <button id="controlPump" onclick="controlPump()" class="btn btn-block">
-                              <i class="material-icons">invert_colors</i> Nhỏ giọt
-                            </button>
-                          </div>
-                          <div class="col-md-6">
-                            <button class="btn btn-block">
-                              <i class="material-icons">flare</i> Phun sương
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                  <div class="card">
-                    <div class="card-header card-header-tabs card-header-danger">
-                      <div class="nav-tabs-navigation">
-                        <div class="nav-tabs-wrapper">
-                          <ul class="nav nav-tabs" data-tabs="tabs">
-                            <li class="nav-item">
-                              <a class="nav-link" href="#" data-toggle="tab">
-                                <i class="material-icons">wb_iridescent</i>Đèn
-                                <div class="ripple-container"></div>
-                              </a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="#" data-toggle="tab">
-                                <i class="material-icons">beach_access</i>Kéo rèm
-                                <div class="ripple-container"></div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="tab-content">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <button id="controlLight" onclick="controlLight()" class="btn btn-block">
-                              <i class="material-icons">wb_iridescent</i> ON/OFF
-                            </button>
-                          </div>
-                          <div class="col-md-6">
-                            <button class="btn btn-primary btn-block">
-                              <i class="material-icons">beach_access</i> ON/OFF
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-8 col-md-16">
+          <div class="col-lg-12 col-md-24">
             <div class="card">
-              <div class="card-header card-header-rose">
+              <div class="card-header card-header-primary">
                 <h4 class="card-title">Vị trí vườn rau</h4>
               </div>
               <div class="card-body">
@@ -263,31 +158,6 @@
                         frameborder="0" style="border:0"
                         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBqCxZyFfJwJEsxA9ncNMmN9AdhUH7kcWQ&q=Thư+viện+Tạ+Quang+Bửu">
                 </iframe>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-8">
-            <div class="card">
-              <div class="card-header card-header-info">
-                <h3 class="card-title">Thông báo</h3>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="alert alert-success">
-                        <span>
-                      <b> Bơm - </b>Khởi động hệ thống bơm nhỏ giọt lúc 13:59 PM 8/9/2019</span>
-                    </div>
-                    <div class="alert alert-success">
-                        <span>
-                      <b> Bơm - </b>Khởi động hệ thống bơm nhỏ giọt lúc 13:59 PM 8/9/2019</span>
-                    </div>
-                    <div class="alert alert-success">
-                        <span>
-                      <b> Bơm - </b>Khởi động hệ thống bơm nhỏ giọt lúc 13:59 PM 8/9/2019</span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
