@@ -217,6 +217,7 @@ async function getControlPumpStatus() {
 async function submitTempForm() {
     let upper = $('#upperTemp').val();
     let below = $('#belowTemp').val();
+    console.log(upper, below);
     try {
         if (upper <= 100 && below <= 100 && upper > -1 && below > -1) {
             await fetch('https://api.thingspeak.com/update?api_key=6QFHSB8F3K2AEMXL&field5=' + upper + '&field6=' + below,
