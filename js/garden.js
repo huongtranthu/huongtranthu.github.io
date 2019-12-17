@@ -7,7 +7,7 @@ async function getWaterQuality() {
             method: 'GET',
         });
     let feeds = await response.json()
-    let feedArr = feeds.feeds.filter(e => e.field3 !== null)
+    let feedArr = feeds.feeds.filter(e => e.field3 !== null &&  e.field3 !== undefined)
     water = feedArr[feedArr.length - 1].field3
     document.getElementById("waterValue").innerHTML = water
 }
@@ -19,7 +19,7 @@ async function getSoilIntensity() {
             method: 'GET',
         })
     let feeds = await response.json()
-    let feedArr = feeds.feeds.filter(e => e.field4 !== null)
+    let feedArr = feeds.feeds.filter(e => e.field4 !== null &&  e.field4 !== undefined)
     soil = feedArr[feedArr.length - 1].field4
     document.getElementById("soilValue").innerHTML = soil
 }
@@ -35,7 +35,7 @@ async function getTemperaturesIntensity() {
             method: 'GET',
         })
     upperData = await upperData.json();
-    let upper = Number.parseInt(upperData.feeds.reverse().filter(e => e.field5 !== null)[0].field5)
+    let upper = Number.parseInt(upperData.feeds.reverse().filter(e => e.field5 !== null &&  e.field5 !== undefined )[0].field5)
     for (let i = 0; i < 12; i++) upperArr.push(upper)
     // get temp below safe level
     let belowArr = [];
@@ -44,16 +44,15 @@ async function getTemperaturesIntensity() {
             method: 'GET',
         })
     belowData = await belowData.json()
-    let below = Number.parseInt(belowData.feeds.reverse().filter(e => e.field6 !== null)[0].field6)
+    let below = Number.parseInt(belowData.feeds.reverse().filter(e => e.field6 !== null &&  e.field6 !== undefined)[0].field6)
     for (let i = 0; i < 12; i++) belowArr.push(below)
-
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/1',
         {
             method: 'GET',
         })
     let feeds = await response.json()
-    let feedArr = feeds.feeds
-    feedArr = feedArr.reverse().filter(e => e.field1 !== null).slice(0, 12);
+    let feedArr = feeds.feeds.reverse()
+    feedArr = feedArr.filter(e => e.field1 !== null &&  e.field1 !== undefined).slice(0, 12);
     const minuteArr = feedArr.map(e => new Date(e.created_at).getHours() + 'h '
         + (new Date(e.created_at).getMinutes() < 10 ? ('0' + new Date(e.created_at).getMinutes())
             : new Date(e.created_at).getMinutes()));
@@ -71,7 +70,7 @@ async function getTemperaturesIntensity() {
             text: 'Date: ' + dateStr
         },
         xAxis: {
-            categories: minuteArr
+            categories: minuteArr.reverse()
         },
         yAxis: {
             title: {
@@ -89,7 +88,7 @@ async function getTemperaturesIntensity() {
         series: [{
             name: 'Nhiệt độ',
             color: "#F08F00",
-            data: tempsArr
+            data: tempsArr.reverse()
         }, {
             name: 'Ngưỡng an toàn trên',
             color: "#E94340",
@@ -115,7 +114,7 @@ async function getHumidityIntensity() {
             method: 'GET',
         })
     upperData = await upperData.json();
-    let upper = Number.parseInt(upperData.feeds.reverse().filter(e => e.field7 !== null)[0].field7)
+    let upper = Number.parseInt(upperData.feeds.reverse().filter(e => e.field7 !== null &&  e.field7 !== undefined)[0].field7)
     for (let i = 0; i < 12; i++) upperArr.push(upper)
     // get hum below safe level
     let belowArr = [];
@@ -124,15 +123,15 @@ async function getHumidityIntensity() {
             method: 'GET',
         })
     belowData = await belowData.json()
-    let below = Number.parseInt(belowData.feeds.reverse().filter(e => e.field8 !== null)[0].field8)
+    let below = Number.parseInt(belowData.feeds.reverse().filter(e => e.field8 !== null &&  e.field8 !== undefined)[0].field8)
     for (let i = 0; i < 12; i++) belowArr.push(below)
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/2',
         {
             method: 'GET',
         })
     let feeds = await response.json()
-    let feedArr = feeds.feeds
-    feedArr = feedArr.reverse().filter(e => e.field2 !== null).slice(0, 12);
+    let feedArr = feeds.feeds.reverse()
+    feedArr = feedArr.filter(e => e.field2 !== null &&  e.field2 !== undefined).slice(0, 12);
     const minuteArr = feedArr.map(e => new Date(e.created_at).getHours() + ':'
         + (new Date(e.created_at).getMinutes() < 10 ? ('0' + new Date(e.created_at).getMinutes())
             : new Date(e.created_at).getMinutes()));
@@ -150,7 +149,7 @@ async function getHumidityIntensity() {
             text: 'Date: ' + dateStr
         },
         xAxis: {
-            categories: minuteArr
+            categories: minuteArr.reverse()
         },
         yAxis: {
             title: {
@@ -168,7 +167,7 @@ async function getHumidityIntensity() {
         series: [{
             name: 'Độ ẩm',
             color: "#09B2C7",
-            data: humsArr
+            data: humsArr.reverse()
         }, {
             name: 'Ngưỡng an toàn trên',
             color: "#E94340",
@@ -184,7 +183,6 @@ async function getHumidityIntensity() {
 }
 
 let lightStatus;
-
 async function getControlLightStatus() {
     // get on/off status
     const response = await fetch('https://api.thingspeak.com/channels/928735/fields/1',
@@ -193,8 +191,7 @@ async function getControlLightStatus() {
         })
     let feeds = await response.json()
     let feedArr = feeds.feeds
-    lightStatus = Number.parseInt(feedArr.reverse().filter(e => e.field1 !== null)[0].field1);
-    console.log(lightStatus)
+    lightStatus = Number.parseInt(feedArr.reverse().filter(e => e.field1 !== null &&  e.field1 !== undefined)[0].field1) || 0;
     if (lightStatus === 1) $('#controlLight').addClass("btn-warning")
     else $('#controlLight').removeClass("btn-warning")
 }
@@ -208,28 +205,40 @@ async function getControlPumpStatus() {
         })
     let feeds = await response.json()
     let feedArr = feeds.feeds
-    pumpStatus = Number.parseInt(feedArr.reverse().filter(e => e.field2 !== null)[0].field2);
-    console.log(pumpStatus)
+    pumpStatus = Number.parseInt(feedArr.reverse().filter(e => e.field2 !== null &&  e.field2 !== undefined)[0].field2) || 0;
     if (pumpStatus === 1) $('#controlPump').addClass("btn-twitter")
     else $('#controlPump').removeClass("btn-twitter")
+}
+
+let panStatus;
+async function getControlPanStatus() {
+    // get on/off status
+    const response = await fetch('https://api.thingspeak.com/channels/928735/fields/3',
+        {
+            method: 'GET',
+        })
+    let feeds = await response.json()
+    let feedArr = feeds.feeds
+    panStatus = Number.parseInt(feedArr.reverse().filter(e => e.field3 !== null &&  e.field3 !== undefined)[0].field3) || 0;
+    if (panStatus === 1) $('#controlPan').addClass("btn-success")
+    else $('#controlPan').removeClass("btn-success")
 }
 
 async function submitTempForm() {
     let upper = $('#upperTemp').val();
     let below = $('#belowTemp').val();
-    console.log(upper, below);
     try {
-        if (upper <= 100 && below <= 100 && upper > -1 && below > -1) {
+        if (upper.length !== 0 && below.length !==0 && upper <= 100 && below <= 100 && upper > -1 && below > -1) {
             await fetch('https://api.thingspeak.com/update?api_key=6QFHSB8F3K2AEMXL&field5=' + upper + '&field6=' + below,
                 {
                     method: 'GET',
                 }).then(function (res) {
-                alert("Set safety range for temperature successfully.")
+                alert("Cài vùng an toàn trên dưới của nhiệt độ thành công")
                 $('#upperTemp').val("")
                 $('#belowTemp').val("")
             });
         } else {
-            alert("Safety temperature range from 0 to 100.")
+            alert("Xin hãy điền lại giá trị trên dưới của nhiệt độ.")
         }
     } catch (e) {
         alert("Failed when setting temperature range")
@@ -240,17 +249,17 @@ async function submitHumForm() {
     let upper = $('#upperHum').val();
     let below = $('#belowHum').val();
     try {
-        if (upper > -1 && below > -1) {
+        if (upper.length !== 0 && below.length !==0 && upper > -1 && below > -1) {
             await fetch('https://api.thingspeak.com/update?api_key=6QFHSB8F3K2AEMXL&field7=' + upper + '&field8=' + below,
                 {
                     method: 'GET',
                 }).then(function (res) {
-                alert("Set safety range for humidity successfully.")
+                alert("Cài vùng an toàn trên dưới của độ ẩm thành công")
                 $('#upperHum').val("")
                 $('#belowHum').val("")
             });
         } else {
-            alert("Safety humidity range from 0 to 100.")
+            alert("Xin hãy điền lại giá trị trên dưới của độ ẩm")
         }
     } catch (e) {
         alert("Failed when setting humidity range")
@@ -266,7 +275,6 @@ async function controlLight() {
                 method: 'GET',
             }).then(function (res) {
             alert("Turn on/off water successfully")
-            console.log(status)
             if(status === 1) $('#controlLight').addClass("btn-warning")
             else $('#controlLight').removeClass("btn-warning")
         });
@@ -283,7 +291,6 @@ async function controlPump() {
             {
                 method: 'GET',
             }).then(function (res) {
-            console.log(status)
             alert("Turn on/off pump successfully")
             if (status === 1) $('#controlPump').addClass("btn-twitter")
             else $('#controlPump').removeClass("btn-twitter")
@@ -292,4 +299,20 @@ async function controlPump() {
         alert("Failed when turn on/off pump")
     }
 }
-// todo change ui, show water + soil + control board first
+
+async function controlPan() {
+    let status = panStatus === 1 ? 0 : 1
+    panStatus = status
+    try {
+        await fetch('https://api.thingspeak.com/update?api_key=1V86WZVKZZYTCHLW&field3=' +status,
+            {
+                method: 'GET',
+            }).then(function (res) {
+            alert("Turn on/off pan successfully")
+            if (status === 1) $('#controlPan').addClass("btn-success")
+            else $('#controlPan').removeClass("btn-success")
+        });
+    } catch (e) {
+        alert("Failed when turn on/off pump")
+    }
+}

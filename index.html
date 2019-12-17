@@ -22,7 +22,8 @@
       getHumidityIntensity();
       getTemperaturesIntensity();
       getControlLightStatus();
-      getControlPumpStatus()
+      getControlPumpStatus();
+      getControlPanStatus()
   </script>
 </head>
 
@@ -123,14 +124,19 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <button id="controlPump" onclick="controlPump()" class="btn btn-block">
                         <i class="material-icons">invert_colors</i> Bơm ON/OFF
                       </button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <button id="controlLight" onclick="controlLight()" class="btn btn-block">
                         <i class="material-icons">wb_iridescent</i> Đèn ON/OFF
+                      </button>
+                    </div>
+                    <div class="col-md-4">
+                      <button id="controlPan" onclick="controlPan()" class="btn btn-block">
+                        <i class="material-icons">toys</i> Quạt ON/OFF
                       </button>
                     </div>
                   </div>
