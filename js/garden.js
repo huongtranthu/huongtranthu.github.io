@@ -35,7 +35,10 @@ async function getTemperaturesIntensity() {
             method: 'GET',
         })
     upperData = await upperData.json();
-    let upper = Number.parseInt(upperData.feeds.reverse().filter(e => e.field5 !== null &&  e.field5 !== undefined )[0].field5)
+    let upperFeed = upperData.feeds.reverse().filter(e => e.field5 !== null &&  e.field5 !== undefined )
+    let upper
+    if(upperFeed.length === 0) upper = 50
+    else upper = Number.parseInt(upperFeed[0].field5)
     for (let i = 0; i < 12; i++) upperArr.push(upper)
     // get temp below safe level
     let belowArr = [];
@@ -44,7 +47,10 @@ async function getTemperaturesIntensity() {
             method: 'GET',
         })
     belowData = await belowData.json()
-    let below = Number.parseInt(belowData.feeds.reverse().filter(e => e.field6 !== null &&  e.field6 !== undefined)[0].field6)
+    let belowFeed = belowData.feeds.reverse().filter(e => e.field6 !== null &&  e.field6 !== undefined)
+    let below
+    if(belowFeed.length === 0) below = 10
+    else below = Number.parseInt(belowFeed[0].field6)
     for (let i = 0; i < 12; i++) belowArr.push(below)
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/1',
         {
@@ -114,7 +120,10 @@ async function getHumidityIntensity() {
             method: 'GET',
         })
     upperData = await upperData.json();
-    let upper = Number.parseInt(upperData.feeds.reverse().filter(e => e.field7 !== null &&  e.field7 !== undefined)[0].field7)
+    let upperFeed = upperData.feeds.reverse().filter(e => e.field7 !== null &&  e.field7 !== undefined)
+    let upper
+    if(upperFeed.length === 0) upper = 100
+    else upper = Number.parseInt(upperFeed[0].field7)
     for (let i = 0; i < 12; i++) upperArr.push(upper)
     // get hum below safe level
     let belowArr = [];
@@ -123,7 +132,10 @@ async function getHumidityIntensity() {
             method: 'GET',
         })
     belowData = await belowData.json()
-    let below = Number.parseInt(belowData.feeds.reverse().filter(e => e.field8 !== null &&  e.field8 !== undefined)[0].field8)
+    let belowFeed = belowData.feeds.reverse().filter(e => e.field8 !== null &&  e.field8 !== undefined)
+    let below
+    if(belowFeed.length === 0) below = 50
+    else below = Number.parseInt(belowFeed[0].field8)
     for (let i = 0; i < 12; i++) belowArr.push(below)
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/2',
         {
