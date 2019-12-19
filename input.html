@@ -24,25 +24,25 @@
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
             <i class="material-icons">dashboard</i>
-            <p>Dashboard</p>
+            <p>Trang chủ</p>
           </a>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="input.html">
             <i class="material-icons">settings_applications</i>
-            <p>Safe Range Settings</p>
+            <p>Vùng an toàn</p>
           </a>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="https://thingspeak.com/channels/866214">
             <i class="material-icons">content_paste</i>
-            <p>Table List</p>
+            <p>Bảng giá trị</p>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="https://thingspeak.com/channels/928735">
             <i class="material-icons">build</i>
-            <p>Pump and Light Control</p>
+            <p>Bảng bật tắt thiết bị</p>
           </a>
         </li>
       </ul>
@@ -70,15 +70,15 @@
         <div class="row">
           <div class="card col-md-5">
             <div class="card-header card-header-warning">
-              <h3 class="card-title">Temperature Setting</h3>
+              <h3 class="card-title">Nhiệt độ</h3>
             </div>
             <div class="card-body">
               <div class="md-form">
-                <label for="upperTemp">Upper level</label>
+                <label for="upperTemp">Mức an toàn trên</label>
                 <input type="number" id="upperTemp" class="form-control" required>
               </div>
               <div class="md-form">
-                <label for="belowTemp">Below level</label>
+                <label for="belowTemp">Mức an toàn dưới</label>
                 <input type="number" id="belowTemp" class="form-control" required>
               </div>
               <button onclick="submitTempForm()" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">
@@ -89,15 +89,15 @@
           <div class="col-md-1"></div>
           <div class="card col-md-5">
             <div class="card-header card-header-info">
-              <h3 class="card-title">Humidity Setting</h3>
+              <h3 class="card-title">Độ ẩm</h3>
             </div>
             <div class="card-body">
               <div class="md-form">
-                <label for="upperHum">Upper level</label>
+                <label for="upperHum">Mức an toàn trên</label>
                 <input type="number" id="upperHum" class="form-control" required>
               </div>
               <div class="md-form">
-                <label for="belowHum">Below level</label>
+                <label for="belowHum">Mức an toàn dưới</label>
                 <input type="number" id="belowHum" class="form-control" required>
               </div>
               <button onclick="submitHumForm()" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">
