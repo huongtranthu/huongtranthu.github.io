@@ -19,11 +19,12 @@
   <script type="text/javascript">
       getWaterQuality();
       getSoilIntensity();
+      getLightIntensity();
       getHumidityIntensity();
       getTemperaturesIntensity();
       getControlLightStatus();
       getControlPumpStatus();
-      getControlPanStatus()
+      getControlPanStatus();
   </script>
 </head>
 
@@ -84,38 +85,60 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="col-lg-2 col-md-4 col-sm-4">
             <div class="card card-stats">
               <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
                   <i class="material-icons">local_drink</i>
                 </div>
-                <p class="card-category">Độ ẩm đất</p>
+                <p class="card-category"></p>
+              </div>
+              <div class="card-footer">
                 <h3 class="card-title" id="soilValue"></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">whatshot</i>Đơn vị đo: %
+                  <i class="material-icons">whatshot</i><b>Độ ẩm đất</b>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="col-lg-2 col-md-4 col-sm-4">
             <div class="card card-stats">
               <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon">
                   <i class="material-icons">scatter_plot</i>
                 </div>
-                <p class="card-category">Chất lượng nước</p>
+                <p class="card-category"></p>
+              </div>
+              <div class="card-footer">
                 <h3 class="card-title" id="waterValue"></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">local_offer</i>Đơn vị đo: PH
+                  <i class="material-icons">local_offer</i><b>Chất lượng nước</b>
                 </div>
               </div>
             </div>
           </div>
+          <div class="col-lg-2 col-md-4 col-sm-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">brightness_high</i>
+              </div>
+              <p class="card-category"></p>
+            </div>
+            <div class="card-footer">
+              <h3 class="card-title" id="lightValue"></h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons">brightness_high</i><b>Cường độ sáng</b>
+              </div>
+            </div>
+          </div>
+        </div>
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="card" id="notification">
               <div class="card-header card-header-primary">

@@ -1,5 +1,6 @@
 let water
 let soil
+let light
 // api chat luong nuoc - 15 minute per time
 async function getWaterQuality() {
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/3',
@@ -22,6 +23,18 @@ async function getSoilIntensity() {
     let feedArr = feeds.feeds.filter(e => e.field4 !== null &&  e.field4 !== undefined)
     soil = feedArr[feedArr.length - 1].field4
     document.getElementById("soilValue").innerHTML = soil
+}
+
+// api cuong do sang - 15 minute per time
+async function getLightIntensity() {
+    const response = await fetch('https://api.thingspeak.com/channels/928735/fields/4',
+        {
+            method: 'GET',
+        })
+    let feeds = await response.json()
+    let feedArr = feeds.feeds.filter(e => e.field4 !== null &&  e.field4 !== undefined)
+    light = feedArr.length !== 0 ? feedArr[feedArr.length - 1].field4 : 0
+    document.getElementById("lightValue").innerHTML = light
 }
 
 // api temperature
