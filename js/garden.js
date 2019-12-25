@@ -33,7 +33,7 @@ async function getLightIntensity() {
         })
     let feeds = await response.json()
     let feedArr = feeds.feeds.filter(e => e.field4 !== null &&  e.field4 !== undefined)
-    light = feedArr.length !== 0 ? feedArr[feedArr.length - 1].field4 : 0
+    light = feedArr.length !== 0 ? feedArr[feedArr.length - 1].field4 : 0;
     document.getElementById("lightValue").innerHTML = light
 }
 
