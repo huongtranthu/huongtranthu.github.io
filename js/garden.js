@@ -1,6 +1,7 @@
 let water
 let soil
 let light
+
 // api chat luong nuoc - 15 minute per time
 async function getWaterQuality() {
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/3',
@@ -8,7 +9,7 @@ async function getWaterQuality() {
             method: 'GET',
         });
     let feeds = await response.json()
-    let feedArr = feeds.feeds.filter(e => e.field3 !== null &&  e.field3 !== undefined)
+    let feedArr = feeds.feeds.filter(e => e.field3 !== null && e.field3 !== undefined)
     water = feedArr[feedArr.length - 1].field3
     document.getElementById("waterValue").innerHTML = water
 }
@@ -20,7 +21,7 @@ async function getSoilIntensity() {
             method: 'GET',
         })
     let feeds = await response.json()
-    let feedArr = feeds.feeds.filter(e => e.field4 !== null &&  e.field4 !== undefined)
+    let feedArr = feeds.feeds.filter(e => e.field4 !== null && e.field4 !== undefined)
     soil = feedArr[feedArr.length - 1].field4
     document.getElementById("soilValue").innerHTML = soil
 }
@@ -32,7 +33,7 @@ async function getLightIntensity() {
             method: 'GET',
         })
     let feeds = await response.json()
-    let feedArr = feeds.feeds.filter(e => e.field4 !== null &&  e.field4 !== undefined)
+    let feedArr = feeds.feeds.filter(e => e.field4 !== null && e.field4 !== undefined)
     light = feedArr.length !== 0 ? feedArr[feedArr.length - 1].field4 : 0;
     document.getElementById("lightValue").innerHTML = light
 }
@@ -48,9 +49,9 @@ async function getTemperaturesIntensity() {
             method: 'GET',
         })
     upperData = await upperData.json();
-    let upperFeed = upperData.feeds.reverse().filter(e => e.field5 !== null &&  e.field5 !== undefined )
+    let upperFeed = upperData.feeds.reverse().filter(e => e.field5 !== null && e.field5 !== undefined)
     let upper
-    if(upperFeed.length === 0) upper = 50
+    if (upperFeed.length === 0) upper = 50
     else upper = Number.parseInt(upperFeed[0].field5)
     for (let i = 0; i < 12; i++) upperArr.push(upper)
     // get temp below safe level
@@ -60,9 +61,9 @@ async function getTemperaturesIntensity() {
             method: 'GET',
         })
     belowData = await belowData.json()
-    let belowFeed = belowData.feeds.reverse().filter(e => e.field6 !== null &&  e.field6 !== undefined)
+    let belowFeed = belowData.feeds.reverse().filter(e => e.field6 !== null && e.field6 !== undefined)
     let below
-    if(belowFeed.length === 0) below = 10
+    if (belowFeed.length === 0) below = 10
     else below = Number.parseInt(belowFeed[0].field6)
     for (let i = 0; i < 12; i++) belowArr.push(below)
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/1',
@@ -71,7 +72,7 @@ async function getTemperaturesIntensity() {
         })
     let feeds = await response.json()
     let feedArr = feeds.feeds.reverse()
-    feedArr = feedArr.filter(e => e.field1 !== null &&  e.field1 !== undefined).slice(0, 12);
+    feedArr = feedArr.filter(e => e.field1 !== null && e.field1 !== undefined).slice(0, 12);
     const minuteArr = feedArr.map(e => new Date(e.created_at).getHours() + 'h '
         + (new Date(e.created_at).getMinutes() < 10 ? ('0' + new Date(e.created_at).getMinutes())
             : new Date(e.created_at).getMinutes()));
@@ -133,9 +134,9 @@ async function getHumidityIntensity() {
             method: 'GET',
         })
     upperData = await upperData.json();
-    let upperFeed = upperData.feeds.reverse().filter(e => e.field7 !== null &&  e.field7 !== undefined)
+    let upperFeed = upperData.feeds.reverse().filter(e => e.field7 !== null && e.field7 !== undefined)
     let upper
-    if(upperFeed.length === 0) upper = 100
+    if (upperFeed.length === 0) upper = 100
     else upper = Number.parseInt(upperFeed[0].field7)
     for (let i = 0; i < 12; i++) upperArr.push(upper)
     // get hum below safe level
@@ -145,9 +146,9 @@ async function getHumidityIntensity() {
             method: 'GET',
         })
     belowData = await belowData.json()
-    let belowFeed = belowData.feeds.reverse().filter(e => e.field8 !== null &&  e.field8 !== undefined)
+    let belowFeed = belowData.feeds.reverse().filter(e => e.field8 !== null && e.field8 !== undefined)
     let below
-    if(belowFeed.length === 0) below = 50
+    if (belowFeed.length === 0) below = 50
     else below = Number.parseInt(belowFeed[0].field8)
     for (let i = 0; i < 12; i++) belowArr.push(below)
     const response = await fetch('https://api.thingspeak.com/channels/866214/fields/2',
@@ -156,7 +157,7 @@ async function getHumidityIntensity() {
         })
     let feeds = await response.json()
     let feedArr = feeds.feeds.reverse()
-    feedArr = feedArr.filter(e => e.field2 !== null &&  e.field2 !== undefined).slice(0, 12);
+    feedArr = feedArr.filter(e => e.field2 !== null && e.field2 !== undefined).slice(0, 12);
     const minuteArr = feedArr.map(e => new Date(e.created_at).getHours() + ':'
         + (new Date(e.created_at).getMinutes() < 10 ? ('0' + new Date(e.created_at).getMinutes())
             : new Date(e.created_at).getMinutes()));
@@ -208,6 +209,7 @@ async function getHumidityIntensity() {
 }
 
 let lightStatus;
+
 async function getControlLightStatus() {
     // get on/off status
     const response = await fetch('https://api.thingspeak.com/channels/928735/fields/1',
@@ -216,12 +218,13 @@ async function getControlLightStatus() {
         })
     let feeds = await response.json()
     let feedArr = feeds.feeds
-    lightStatus = Number.parseInt(feedArr.reverse().filter(e => e.field1 !== null &&  e.field1 !== undefined)[0].field1) || 0;
+    lightStatus = Number.parseInt(feedArr.reverse().filter(e => e.field1 !== null && e.field1 !== undefined)[0].field1) || 0;
     if (lightStatus === 1) $('#controlLight').addClass("btn-warning")
     else $('#controlLight').removeClass("btn-warning")
 }
 
 let pumpStatus;
+
 async function getControlPumpStatus() {
     // get on/off status
     const response = await fetch('https://api.thingspeak.com/channels/928735/fields/2',
@@ -230,12 +233,13 @@ async function getControlPumpStatus() {
         })
     let feeds = await response.json()
     let feedArr = feeds.feeds
-    pumpStatus = Number.parseInt(feedArr.reverse().filter(e => e.field2 !== null &&  e.field2 !== undefined)[0].field2) || 0;
+    pumpStatus = Number.parseInt(feedArr.reverse().filter(e => e.field2 !== null && e.field2 !== undefined)[0].field2) || 0;
     if (pumpStatus === 1) $('#controlPump').addClass("btn-twitter")
     else $('#controlPump').removeClass("btn-twitter")
 }
 
 let panStatus;
+
 async function getControlPanStatus() {
     // get on/off status
     const response = await fetch('https://api.thingspeak.com/channels/928735/fields/3',
@@ -244,7 +248,7 @@ async function getControlPanStatus() {
         })
     let feeds = await response.json()
     let feedArr = feeds.feeds
-    panStatus = Number.parseInt(feedArr.reverse().filter(e => e.field3 !== null &&  e.field3 !== undefined)[0].field3) || 0;
+    panStatus = Number.parseInt(feedArr.reverse().filter(e => e.field3 !== null && e.field3 !== undefined)[0].field3) || 0;
     if (panStatus === 1) $('#controlPan').addClass("btn-success")
     else $('#controlPan').removeClass("btn-success")
 }
@@ -253,7 +257,7 @@ async function submitTempForm() {
     let upper = $('#upperTemp').val();
     let below = $('#belowTemp').val();
     try {
-        if (upper.length !== 0 && below.length !==0 && upper <= 100 && below <= 100 && upper > -1 && below > -1) {
+        if (upper.length !== 0 && below.length !== 0 && upper <= 100 && below <= 100 && upper > -1 && below > -1) {
             await fetch('https://api.thingspeak.com/update?api_key=6QFHSB8F3K2AEMXL&field5=' + upper + '&field6=' + below,
                 {
                     method: 'GET',
@@ -274,7 +278,7 @@ async function submitHumForm() {
     let upper = $('#upperHum').val();
     let below = $('#belowHum').val();
     try {
-        if (upper.length !== 0 && below.length !==0 && upper > -1 && below > -1) {
+        if (upper.length !== 0 && below.length !== 0 && upper > -1 && below > -1) {
             await fetch('https://api.thingspeak.com/update?api_key=6QFHSB8F3K2AEMXL&field7=' + upper + '&field8=' + below,
                 {
                     method: 'GET',
@@ -295,16 +299,23 @@ async function controlLight() {
     let status = lightStatus === 1 ? 0 : 1
     lightStatus = status
     try {
-        await fetch('https://api.thingspeak.com/update?api_key=1V86WZVKZZYTCHLW&field1=' +status,
+        await fetch('https://api.thingspeak.com/update?api_key=1V86WZVKZZYTCHLW&field1=' + status,
             {
                 method: 'GET',
-            }).then(function (res) {
-            alert("Turn on/off water successfully")
-            if(status === 1) $('#controlLight').addClass("btn-warning")
-            else $('#controlLight').removeClass("btn-warning")
+            }).then(async function (res) {
+            let id = JSON.stringify(await res.json())
+            console.log(id)
+            if (id <= 0) {
+                alert("Thất bại. Quay lại sau 10s")
+            } else {
+                alert("Bật tắt thành công");
+                if (status === 1) $('#controlLight').addClass("btn-warning")
+                else $('#controlLight').removeClass("btn-warning")
+                lightStatus = lightStatus === 1 ? 0 : 1
+            }
         });
     } catch (e) {
-        alert("Failed when turn on/off lights")
+        alert("Thất bại. Quay lại sau 10s")
     }
 }
 
@@ -312,16 +323,23 @@ async function controlPump() {
     let status = pumpStatus === 1 ? 0 : 1
     pumpStatus = status
     try {
-        await fetch('https://api.thingspeak.com/update?api_key=1V86WZVKZZYTCHLW&field2=' +status,
+        await fetch('https://api.thingspeak.com/update?api_key=1V86WZVKZZYTCHLW&field2=' + status,
             {
                 method: 'GET',
-            }).then(function (res) {
-            alert("Turn on/off pump successfully")
-            if (status === 1) $('#controlPump').addClass("btn-twitter")
-            else $('#controlPump').removeClass("btn-twitter")
+            }).then(async function (res) {
+            let id = JSON.stringify(await res.json())
+            console.log(id)
+            if (id <= 0) {
+                alert("Thất bại. Quay lại sau 10s")
+            } else {
+                alert("Bật tắt thành công.")
+                if (status === 1) $('#controlPump').addClass("btn-twitter")
+                else $('#controlPump').removeClass("btn-twitter")
+                pumpStatus = pumpStatus === 1 ? 0 : 1
+            }
         });
     } catch (e) {
-        alert("Failed when turn on/off pump")
+        alert("Thất bại. Quay lại sau 10s")
     }
 }
 
@@ -329,15 +347,22 @@ async function controlPan() {
     let status = panStatus === 1 ? 0 : 1
     panStatus = status
     try {
-        await fetch('https://api.thingspeak.com/update?api_key=1V86WZVKZZYTCHLW&field3=' +status,
+        await fetch('https://api.thingspeak.com/update?api_key=1V86WZVKZZYTCHLW&field3=' + status,
             {
                 method: 'GET',
-            }).then(function (res) {
-            alert("Turn on/off pan successfully")
-            if (status === 1) $('#controlPan').addClass("btn-success")
-            else $('#controlPan').removeClass("btn-success")
+            }).then(async function (res) {
+            let id = JSON.stringify(await res.json())
+            console.log(id)
+            if (id <= 0) {
+                alert("Thất bại. Quay lại sau 10s")
+            } else {
+                alert("Bật tắt thành công")
+                if (status === 1) $('#controlPan').addClass("btn-success")
+                else $('#controlPan').removeClass("btn-success")
+                panStatus = panStatus === 1 ? 0 : 1
+            }
         });
     } catch (e) {
-        alert("Failed when turn on/off pump")
+        alert("Thất bại. Quay lại sau 10s")
     }
 }
