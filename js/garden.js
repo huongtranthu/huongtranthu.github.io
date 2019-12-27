@@ -310,7 +310,7 @@ async function controlLight() {
             } else {
                 alert("Bật tắt thành công");
                 if (status === 1) $('#controlLight').addClass("btn-warning")
-                else $('#controlLight').removeClass("btn-warning")
+                else $('#controlLight').removeClass("btn-warning");
                 lightStatus = lightStatus === 1 ? 0 : 1
             }
         });
