@@ -62,7 +62,7 @@ async function getTemperaturesIntensity() {
         })
     belowData = await belowData.json()
     let belowFeed = belowData.feeds.reverse().filter(e => e.field6 !== null && e.field6 !== undefined)
-    let below
+    let below;
     if (belowFeed.length === 0) below = 10
     else below = Number.parseInt(belowFeed[0].field6)
     for (let i = 0; i < 12; i++) belowArr.push(below)
