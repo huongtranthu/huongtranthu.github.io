@@ -1,5 +1,5 @@
 ## IOT Smart garden
-Specialty: 
+1. Specialty: 
 - Control to turn on/off light, water irrigation system,... of a simulated IOT smart gargen
 - View temperature and humidity charts
-Deployed product: http://huongtranthu.github.io/ 
+2. Deployed product: http://huongtranthu.github.io/ 
